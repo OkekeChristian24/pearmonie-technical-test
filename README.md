@@ -64,3 +64,10 @@ There are 3 apps on this system: [frontend](./apps/frontend/), [backendserver](.
     - userID (number)
     - tmdbID (number)
     - rating (number)
+
+# TODO
+
+    - Finish up the API documentation
+    - Setup GitHub Actions for CI/CD pipeline
+    - Continue testing, adding features, and fixing any bugs
+    - ...many more
