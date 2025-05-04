@@ -1,0 +1,46 @@
+version: '3.8'
+x-defaults:
+  init: true
+  tty: true
+  networks: &ref_0
+    - chrisrecommendapp_network
+networks:
+  chrisrecommendapp_network: null
+services:
+  backendserver:
+    init: true
+    tty: true
+    networks: *ref_0
+    ports:
+      - '5000:5000'
+    environment:
+      - PORT=5000
+    env_file:
+      - ./apps/backendserver/.env
+    build:
+      context: .
+      dockerfile: ./apps/backendserver/Dockerfile
+    volumes:
+      - './apps/backendserver:/app/apps/backendserver'
+      - /app/apps/backendserver/node_modules
+  recommendationserver:
+    ports:
+      - '5001:5001'
+    env_file:
+      - ./apps/recommendationserver/.env
+    build:
+      context: .
+      dockerfile: ./apps/recommendationserver/Dockerfile
+    volumes:
+      - './apps/recommendationserver:/app/apps/recommendationserver'
+  frontend:
+    ports:
+      - '3000:3000'
+    env_file:
+      - ./apps/frontend/.env
+    build:
+      context: .
+      dockerfile: ./apps/frontend/Dockerfile
+    volumes:
+      - './apps/frontend:/app/apps/frontend'
+      - /app/apps/frontend/node_modules

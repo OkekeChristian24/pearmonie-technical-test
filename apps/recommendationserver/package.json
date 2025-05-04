@@ -1,0 +1,11 @@
+{
+  "name": "recommendationserver",
+  "version": "0.0.1",
+  "description": "The recommendation server for the Okeke Recommendation System app",
+  "author": "Christian Okeke",
+  "scripts": {
+    "dev": "flask run -h 0.0.0.0 -p 5001",
+    "start": "flask run -h 0.0.0.0 -p 5001",
+    "serve": "flask run -h 0.0.0.0 -p 5001"
+  }
+}

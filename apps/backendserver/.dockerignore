@@ -1,0 +1,43 @@
+# Node modules (should be installed fresh in image)
+node_modules
+**/node_modules
+
+# Dependency lock file (optional if it's copied manually in Dockerfile)
+.pnpm-store
+.npm
+.yarn
+
+# Build artifacts
+dist
+build
+.next
+out
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Environment files (never copy secrets to image)
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# Docker files
+Dockerfile*
+docker-compose*
+
+# Editor/IDE config
+.vscode
+.idea
+*.swp
+*.swo
