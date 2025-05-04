@@ -37,14 +37,8 @@ function Account() {
         <div className="mt-6 grid place-items-center md:border-x-0 md:border-t md:border-b-0 md:px-0">
           {/* <h4 className="text-lg text-[gray]">Settings</h4> */}
           <p className="mt-6 text-justify mb-0">
-            ChrisRecommend was formed in 2022 and holds that belief that love is
-            the ideal way to conduct business. We are a team made up of artists,
-            engineers, and algorithmic traders. Some of us have been
-            professional photographers, and others have created trading algos
-            managing hundreds of millions of dollars. We are united with the
-            same goal: to make everyone's life easier in the ways we know how.
-            Our client base is made up of individuals, ecommerce companies,
-            fintech companies, academic institutions, and others.
+            ChrisRecommend is an application that recommends contents to its
+            users
           </p>
         </div>
         <div className="mt-5 grid grid-cols-1 gap-x-4 border px-4 py-4 md:grid-cols-4 md:border-x-0 md:border-0 md:border-b-0 md:px-0">

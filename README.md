@@ -1,78 +1,66 @@
 # ChrisRecommend App for the PearMonie Technical Interview Test
 
-```sh
-npx create-turbo@latest
-```
+## Deliverables
 
-## What's inside?
+There are 3 apps on this system: [frontend](./apps/frontend/), [backendserver](./apps/backendserver/), and [recommendationserver](./apps/recommendationserver/)
 
-This Turborepo includes the following packages/apps:
+## Database schema
 
-### Apps and Packages
+[PostgreSQL schema](apps/recommendationserver/codefordatabase.sql)
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## Setup and installation instruction:
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+### Database setup
 
-### Utilities
+- Connect to a PostgreSQL database. Use [my databse setup](./apps/recommendationserver/.env.example) if you want. Connect your pgAdmin4 to it.
+- Copy and paste all or one-by-one in your pgAdmin4 and execute them to create the database and tables. Note: If you use my setup, no need to create the database and tables as they are already created.
 
-This Turborepo has some additional tools already setup for you:
+### Frontend setup
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+- Goto [.env.example file](./apps/frontend/.env.example) and rename it to `.env`
 
-### Build
+### Backend server setup
 
-To build all apps and packages, run the following command:
+- Goto [.env.example file](./apps/backendserver/.env.example) and rename it to `.env`
 
-```
-cd my-turborepo
-pnpm build
-```
+### Recommendation server setup
 
-### Develop
+- Goto [.env.example file](./apps/recommendationserver/.env.example) and rename it to `.env`
 
-To develop all apps and packages, run the following command:
+## Running
 
-```
-cd my-turborepo
-pnpm dev
-```
+### Using Docker and Docker Compose
 
-### Remote Caching
+- Ensure you have Docker and Docker Compose installed on your system. Here is a [link](https://docs.docker.com/compose/install/) on how to install them
+- Goto the project's root folder(where turbo.json and docker-compose.yaml files are) and run the command `docker-compose up .` or `docker compose up .`
+- Access the frontend app on `http://localhost:3000`, backendserver app on `http://localhost:5000`, and recommendationserver app on `http://localhost:5001`.
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+### Without using Docker and Docker Compose
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+- Ensure you have Node.js v18+ and Python v3 installed on your system.
+- You also need to have either pnpm, npm, yarn installed globally on your system. npm is installed with Node.js automatically. Use `npm install --global yarn` or `npm install -g pnpm@latest-10` to install yarn or pnpm respectively.
+- Goto the [project's root directory](./) (where turbo.json and docker-compose.yaml files are) and run the command `npm install` or `yarn` or `pnpm install` depending on which package manager you are using. This will install all dependencies for the frontend and backendserver apps. It will take a while to install.
+- Goto the [recommendationserver app directory](./apps/recommendationserver/)
+  - Setup a virtual environment by running `python3 -m venv .venv`(macOS/Linux) or `py -3 -m venv .venv`(Windows PowerShell)
+  - Active the virtual environment by running `source .venv/bin/activate`(macOS/Linux) or `.\.venv\Scripts\Activate`(Windows PowerShell)
+  - Then run `pip3 install -r requirements.txt` to install all dependencies. This will take a while.
+- After all dependencies have been installed, go back to the [project's root directory](./) and run either `npm run dev` or `yarn run dev` or `pnpm run dev` depending on which package manager you are using.
+- Access the frontend app on `http://localhost:3000`, backendserver app on `http://localhost:5000`, and recommendationserver app on `http://localhost:5001`.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+## API Endpoints
 
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.com/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turborepo.com/docs/core-concepts/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+- `POST /register` (To register a user)
+  - body:
+    - name (string)
+    - email (string)
+    - age (number)
+    - password (string)
+- `POST /ratingimplicit` (Implicitly rate a content due to the user's action)
+  - body:
+    - userID (number)
+    - tmdbID (number)
+- `POST /ratingexplicit` (The user explicitly rate the content)
+  - body:
+    - userID (number)
+    - tmdbID (number)
+    - rating (number)

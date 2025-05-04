@@ -1,2 +1,21 @@
-/node_modules
-dist/
+# Dependency directories
+node_modules/                       
+.pnpm-store/                        
+.yarn/                            
+
+# Build outputs
+dist/                             
+build/                           
+coverage/               
+
+# TypeScript
+*.tsbuildinfo   
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+
+# Environment & secrets
+.env
